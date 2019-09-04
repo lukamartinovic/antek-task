@@ -1,13 +1,29 @@
+body
+  background-color: #FBF5F3
+  color: #000022
+
 *
-  padding: 0px
+  font-family: Roboto
+  padding: 0
 
 button
+  color: #17183B
   border: 0
   background: none
+  transition: 0.3s
+  cursor: pointer
+
+button:hover
+  color: #5458D8
+
+button:disabled
+  color: darkgrey
 
 input
+  background-color: #EDE7E6
   border: none
   border-bottom: 1px solid gray
+  border-radius: 0.5em
   padding: 0.5em
   margin: 0.5em
 
@@ -15,32 +31,36 @@ label
   font-size: 0.7em
   color: darkred
   margin-left: 1em
-  margin-top: -0.5em
-
-button:hover
-  cursor: pointer
+  margin-top: -1em
 
 .invalid
   border-bottom: 2px solid darkred
 
 .title
   margin: auto
-  border-bottom: 1px solid darkgrey
   display: flex
   align-items: center
-  max-width: 700px
+  max-width: 750px
 
   *
     padding-left: 0.5em
 
 .app
-  max-width: 700px
+  max-width: 750px
   margin: auto
+  padding: 0 0.5em 0 0.5em
 
 .contact
+  padding: 0.2em
+  margin-top: 0.5em
   display: grid
   grid-template-columns: 1fr 5fr 2fr
-  border-bottom: 1px solid darkgrey
+  border-bottom: 1px solid #17183B
+  border-radius: 0.5em
+  box-shadow: 1px 1px 8px -5px rgba(0, 0, 0, 0.75)
+
+  input
+    margin-bottom: 0
 
   .contactButtons
     display: flex
@@ -49,17 +69,25 @@ button:hover
 
     *
       font-size: calc(0.75em + 1vmin)
-      padding: 0.5em
 
   .contactInfo
+    padding: 0.5em
     display: flex
     flex-direction: column
-    justify-content: space-around
+    justify-content: flex-start
 
   img
     max-width: 80px
 
+@media only screen and (max-width: 375px)
+  .contactButtons
+    display: flex
+    flex-direction: column
+
 .addContact
+  button
+    border-radius: 1em
+
   .addContactForm
     display: grid
     grid-template-columns: 3fr 1fr
@@ -69,7 +97,23 @@ button:hover
       flex-direction: column
 
     input
+
       border: none
       border-bottom: 1px solid gray
       padding: 0.5em
       margin: 0.5em
+      margin-bottom: 1.1em
+
+.topBar
+  color: #E28413
+  background-color: #000022
+  width: 100vw
+  border-bottom: 1px solid darkgrey
+  margin-bottom: 0.5em
+
+.contactName
+  margin-bottom: 0.4em
+  font-weight: bold
+
+.contactNumber, .contactEmail
+  font-size: 0.8em

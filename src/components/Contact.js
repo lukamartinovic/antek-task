@@ -4,9 +4,10 @@ import {useInput} from "../hooks/useInput";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCheck, faPen, faTimes, faTrash} from '@fortawesome/free-solid-svg-icons'
 import defaultProfilePic from '../images/defaultProfilePic.png'
+import apiRoutes from "../api";
 
 function Contact(props) {
-
+    const {host, routes} = apiRoutes;
     const {number, name, email, id, refetch} = props;
     const [editing, setEditing] = useState(false);
     const [input, handleInput] = useInput({
@@ -16,13 +17,13 @@ function Contact(props) {
     });
 
     function deleteContact() {
-        axios.delete('http://localhost:3000/delete/' + id)
+        axios.delete(host + routes.deleteEntry + id)
             .then(res => refetch())
             .catch(res => console.log(res.error))
     }
 
     function putEdit() {
-        axios.put('http://localhost:3000/put', {
+        axios.put(host + routes.editEntry, {
             id: id,
             name: input.inputData.name,
             email: input.inputData.email,
@@ -38,9 +39,9 @@ function Contact(props) {
     const contactInfo =
         <>
             <div className="contactInfo">
-                {name}<br/>
-                {number}<br/>
-                {email}<br/>
+                <span className="contactName">{name}</span>
+                <span className="contactNumber">{number}</span>
+                <span className="contactEmail">{email}</span>
             </div>
             <div className="contactButtons">
                 <button onClick={deleteContact}><FontAwesomeIcon icon={faTrash}/></button>
@@ -55,7 +56,8 @@ function Contact(props) {
     const editContact =
         <>
             <div className="contactInfo">
-                <input className={input.errors.name && "invalid"} name="name" value={input.inputData.name} onChange={handleInput}/>
+                <input className={input.errors.name && "invalid"} name="name" value={input.inputData.name}
+                       onChange={handleInput}/>
                 <input name="email" value={input.inputData.email} onChange={handleInput}/>
                 <input name="number" value={input.inputData.number} onChange={handleInput}/>
             </div>
@@ -79,6 +81,6 @@ function Contact(props) {
             {!editing ? contactInfo : editContact}
         </div>
     );
-};
+}
 
 export default Contact;

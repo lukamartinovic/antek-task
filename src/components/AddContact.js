@@ -3,20 +3,22 @@ import axios from 'axios';
 import {useInput} from '../hooks/useInput'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faUserPlus} from '@fortawesome/free-solid-svg-icons'
+import apiRoutes from '../api'
 
 function AddContact(props) {
 
+    const {host, routes} = apiRoutes;
     const [input, handleInput] = useInput();
     const [blurred, setBlurred] = useState({name: false, number: false});
 
-    function handleBlurred(e){
-        setBlurred({...blurred, [e.target.name]:true})
+    function handleBlurred(e) {
+        setBlurred({...blurred, [e.target.name]: true})
     }
 
     function postContact(e) {
         e.preventDefault();
         const {refetch} = props;
-        axios.post('http://localhost:3000/post', {...input.inputData})
+        axios.post(host + routes.addEntry, {...input.inputData})
             .then(res => refetch())
             .catch(err => console.log(err.response))
     }
@@ -25,7 +27,8 @@ function AddContact(props) {
         <div className="addContact">
             <form className="addContactForm" noValidate>
                 <div className="formInput">
-                    <input value={input.inputData.name} required name="name" placeholder="Name" onChange={handleInput} onBlur={handleBlurred}/>
+                    <input value={input.inputData.name} required name="name" placeholder="Name" onChange={handleInput}
+                           onBlur={handleBlurred}/>
                     {(input.errors.name && blurred.name) && <label>Name is required</label>}
                     <input value={input.inputData.number} required name="number" placeholder="Number"
                            onChange={handleInput} onBlur={handleBlurred}/>
@@ -37,6 +40,6 @@ function AddContact(props) {
             </form>
         </div>
     );
-};
+}
 
 export default AddContact;

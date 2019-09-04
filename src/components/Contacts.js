@@ -3,16 +3,18 @@ import {useRefetch} from '../hooks/useRefetch'
 import axios from 'axios';
 import Contact from './Contact'
 import AddContact from "./AddContact";
+import apiRoutes from "../api";
 
 function Contacts() {
+    const {host, routes} = apiRoutes;
     const [contacts, setContacts] = useState({});
     const [refetchStatus, refetch] = useRefetch();
 
     useEffect(() => {
-        axios.get("http://localhost:3000/get")
+        axios.get(host + routes.getAll)
             .then(res => setContacts(res.data))
             .catch(err => console.log(err))
-    }, [refetchStatus]);
+    }, [refetchStatus, host, routes.getAll]);
 
     return (<>
             <AddContact
@@ -33,6 +35,6 @@ function Contacts() {
             </div>
         </>
     );
-};
+}
 
 export default Contacts;
