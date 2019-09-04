@@ -1,0 +1,86 @@
+* {
+  padding: 0px;
+}
+
+button {
+  border: 0;
+  background: none;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid gray;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+label {
+  font-size: 0.7em;
+  color: darkred;
+  margin-left: 1em;
+  margin-top: -0.5em;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.invalid {
+  border-bottom: 2px solid darkred;
+}
+
+.title {
+  margin: auto;
+  border-bottom: 1px solid darkgrey;
+  display: flex;
+  align-items: center;
+  max-width: 700px;
+}
+.title * {
+  padding-left: 0.5em;
+}
+
+.app {
+  max-width: 700px;
+  margin: auto;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 5fr 2fr;
+  border-bottom: 1px solid darkgrey;
+}
+.contact .contactButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.contact .contactButtons * {
+  font-size: calc(0.75em + 1vmin);
+  padding: 0.5em;
+}
+.contact .contactInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.contact img {
+  max-width: 80px;
+}
+
+.addContact .addContactForm {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+.addContact .addContactForm .formInput {
+  display: flex;
+  flex-direction: column;
+}
+.addContact .addContactForm input {
+  border: none;
+  border-bottom: 1px solid gray;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+/*# sourceMappingURL=style.css.map */
